@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Registration Form</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	
+	<header>
+		<nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+		  <div class="container-fluid">
+		    <a class="navbar-brand" th:href="@{/}">Student Management System</a>
+		    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
+		    	aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		      <span class="navbar-toggler-icon"></span>
+		    </button>
+		    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+		        <li class="nav-item">
+		          <a class="nav-link active" aria-current="page" th:href="@{/studentsList}">Students</a>
+		        </li>
+		        <li class="nav-item">
+		          <a class="nav-link" href="teachersPage">Teachers</a>
+		        </li>
+		        <li class="nav-item">
+		          <a class="nav-link" href="signaturesList">List of Signatures</a>
+		        </li>
+		      </ul>
+		    </div>
+		  </div>
+		</nav>
+	</header>
+	
+	<div class="container">
+		<form th:action="@{/studentRegistrationForm}" class="d-flex justify-content-center align-items-center">
+		<button type="submit" class="btn btn-primary mt-4 mb-4 col-3">
+			New Student
+		</button>
+	</div>
+	
+	<table class="table container text-center justify-content-center align-items-center">
+	  <thead class="table-dark">
+	    <tr>
+	      <th scope="col">ID</th>
+	      <th scope="col">First Name</th>
+	      <th scope="col">Last Name</th>
+	      <th scope="col">Birthday</th>
+	      <th scope="col">Email</th>
+	      <th scope="col">Tuition Number</th>
+	      <th scope="col">Actions</th>
+	    </tr>
+	  </thead>
+	  <tbody th:each="student : ${studentsList}">
+	    <tr>
+	      <th scope="row" th:text="${student.idStudent}"></th>
+	      <td th:text="${student.nameStudent}"></td>
+	      <td th:text="${student.lastNameStudent}"></td>
+	      <td th:text="${student.birthdayStudent}"></td>
+	      <td th:text="${student.emailStudent}"></td>
+	      <td th:text="${student.tuitionNumber}"></td>
+	      <td>
+			<button class="btn btn-warning">
+				<a th:href="@{/{id}/editStudentForm(id=${student.idStudent})}" class="text-decoration-none fw-bold text-dark">Editar</a>
+			</button>
+			<button class="btn btn-danger">
+				<a th:href="@{/{id}/deleteStudent(id=${student.idStudent})}" class="text-decoration-none fw-bold text-dark">Eliminar</a>
+			</button>
+		  </td>
+	    </tr> 
+	  </tbody>
+	</table>
+	
+	
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

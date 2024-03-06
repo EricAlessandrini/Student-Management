@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Student Management System</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body>
+	
+	<nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+	  <div class="container-fluid">
+	    <a class="navbar-brand" th:href="@{/}">Student Management System</a>
+	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
+	    	aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+	    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+	        <li class="nav-item">
+	          <a class="nav-link active" aria-current="page" th:href="@{/studentsList}">Students</a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link" href="teachersPage">Teachers</a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link" href="signaturesList">List of Signatures</a>
+	        </li>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+	
+	<div class="container-fluid d-flex flex-column justify-content-center align-items-center">
+		<h1 class="text-center mt-3 mb-3">
+			Welcome to the Student Management System
+		</h1>
+	
+		<h2 class="text-center mb-3">
+			Please, use the Navigation Bar above to move around the page
+		</h2>
+		
+		<img style="width: 750px; height: auto"src="https://alianzaestudiantil.org/wp-content/uploads/2022/12/becas-tipos.jpg">
+	</div>
+	
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>
