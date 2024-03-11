@@ -24,11 +24,15 @@ public class StudentController {
 		this.studentService = studentService;
 	}
 	
+	// Method to show form for new student registration
+	
 	@GetMapping("/studentRegistrationForm")
 	public String registrationForm(Model model) {
 		model.addAttribute("student", new Student());
 		return "studentForm";
 	}
+	
+	// Method to receive the information of new Student and save it on our DB
 	
 	@PostMapping("/registerStudent")
 	public String saveNewStudent(@Valid @ModelAttribute Student student, BindingResult result) {
@@ -41,12 +45,16 @@ public class StudentController {
 		return "redirect:/studentsList";
 	}
 	
+	// Method to list all Students registered on DB
+	
 	@GetMapping("/studentsList")
 	public String getAllStudents(Model model) {
 		List<Student> studentsList = studentService.getAllStudents();
 		model.addAttribute("studentsList", studentsList);
 		return "studentsList";
 	}
+	
+	// Method to show the form used to update data registered of Students in DB
 	
 	@GetMapping("/{id}/editStudentForm")
 	public String getStudentToEdit(@PathVariable Long id, Model model) {
@@ -55,6 +63,8 @@ public class StudentController {
 		model.addAttribute("studentFromDB", studentFromDB);
 		return "studentEditForm";
 	}
+	
+	// Method to actually update the information of a Student inside the DB
 	
 	@PostMapping("/editStudent")
 	public String updateStudent(@Valid @ModelAttribute("studentFromDB") Student student, BindingResult result) {
@@ -66,6 +76,8 @@ public class StudentController {
 		studentService.updateStudent(student.getIdStudent(), student);
 		return "redirect:/studentsList";
 	}
+	
+	// Method to delete a Student from the system (out of DB thus out of list too)
 	
 	@GetMapping("/{id}/deleteStudent")
 	public String deleteStudent(@PathVariable Long id) {

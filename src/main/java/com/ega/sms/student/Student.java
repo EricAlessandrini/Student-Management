@@ -1,12 +1,14 @@
 package com.ega.sms.student;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.ega.sms.signatures.Signature;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
-import lombok.*;
 
 @Entity
 @Table (name = "students")
@@ -42,6 +44,10 @@ public class Student {
 	@NotBlank(message = "You must enter your tuition number")
 	@Column(name = "student_tuition")
 	private String tuitionNumber;
+	
+	@ManyToMany( targetEntity = Signature.class, fetch = FetchType.LAZY )
+	@JoinTable( name = "student_signatures", joinColumns = @JoinColumn( name = "id_student" ), inverseJoinColumns = @JoinColumn( name = "id_signature" ))
+	private List<Signature> signatures;
 	
 	public Student() {
 		

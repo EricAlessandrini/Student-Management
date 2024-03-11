@@ -24,7 +24,7 @@
 		          <a class="nav-link" href="teachersPage">Teachers</a>
 		        </li>
 		        <li class="nav-item">
-		          <a class="nav-link active" th:href="@{/signaturesList}">List of Signatures</a>
+		          <a class="nav-link" th:href="@{/signaturesList}">Signatures</a>
 		        </li>
 		      </ul>
 		    </div>
@@ -33,9 +33,9 @@
 	</header>
 	
 	<div class="container">
-		<form th:action="@{/studentRegistrationForm}" class="d-flex justify-content-center align-items-center">
+		<form th:action="@{/newSignatureForm}" class="d-flex justify-content-center align-items-center">
 		<button type="submit" class="btn btn-primary mt-4 mb-4 col-3">
-			New Student
+			New Signature
 		</button>
 		</form>
 	</div>
@@ -44,28 +44,24 @@
 	  <thead class="table-dark">
 	    <tr>
 	      <th scope="col">ID</th>
-	      <th scope="col">First Name</th>
-	      <th scope="col">Last Name</th>
-	      <th scope="col">Birthday</th>
-	      <th scope="col">Email</th>
-	      <th scope="col">Tuition Number</th>
+	      <th scope="col">Signature's Name</th>
+	      <th scope="col">Credits</th>
+	      <th scope="col">Teacher</th>
 	      <th scope="col">Actions</th>
 	    </tr>
 	  </thead>
-	  <tbody th:each="student : ${studentsList}">
+	  <tbody th:each="signature : ${allSignatures}">
 	    <tr>
-	      <th scope="row" th:text="${student.idStudent}"></th>
-	      <td th:text="${student.nameStudent}"></td>
-	      <td th:text="${student.lastNameStudent}"></td>
-	      <td th:text="${student.birthdayStudent}"></td>
-	      <td th:text="${student.emailStudent}"></td>
-	      <td th:text="${student.tuitionNumber}"></td>
+	      <th scope="row" th:text="${signature.id}"></th>
+	      <td th:text="${signature.name}"></td>
+	      <td th:text="${signature.credits}"></td>
+	      <td th:text="${signature.teacher}"></td>
 	      <td>
-			<button class="btn btn-warning">
-				<a th:href="@{/{id}/editStudentForm(id=${student.idStudent})}" class="text-decoration-none fw-bold text-dark">Editar</a>
+			<button class="btn btn-warning disable">
+				<a href="" class="text-decoration-none fw-bold text-dark">Editar</a>
 			</button>
-			<button class="btn btn-danger">
-				<a th:href="@{/{id}/deleteStudent(id=${student.idStudent})}" class="text-decoration-none fw-bold text-dark">Eliminar</a>
+			<button class="btn btn-danger disable">
+				<a href="" class="text-decoration-none fw-bold text-dark">Eliminar</a>
 			</button>
 		  </td>
 	    </tr> 

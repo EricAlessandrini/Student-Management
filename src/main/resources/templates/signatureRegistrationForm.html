@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Registration Form</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	
+	<header>
+		<nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+		  <div class="container-fluid">
+		    <a class="navbar-brand" th:href="@{/}">Student Management System</a>
+		    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
+		    	aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		      <span class="navbar-toggler-icon"></span>
+		    </button>
+		    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+		        <li class="nav-item">
+		          <a class="nav-link active" aria-current="page" th:href="@{/studentsList}">Students</a>
+		        </li>
+		        <li class="nav-item">
+		          <a class="nav-link" href="teachersPage">Teachers</a>
+		        </li>
+		        <li class="nav-item">
+		          <a class="nav-link" th:href="@{/signaturesList}">Signatures</a>
+		        </li>
+		      </ul>
+		    </div>
+		  </div>
+		</nav>
+	</header>
+	
+	<main>
+		<h1 class="text-center mt-3 mb-3">Register Form for New Signature</h1>
+	
+		<div class="container-fluid">
+			<div class="row d-flex flex-column justify-content-center align-items-center">
+				<form th:action="@{/registerSignature}" th:object="${signature}" method="POST" 
+				class="col-4">
+					<div class="mb-3">
+					  <label for="name_signature" class="form-label fw-bold">Signature's Name</label>
+					  <input type="text" class="form-control" th:field="*{name}" id="name_signature" placeholder="Enter signature's name"
+					  	th:errorClass="is-invalid">
+					  <span th:if="${#fields.hasErrors('name')}" class="invalid-feedback" th:errors="*{name}"></span>
+					</div>
+					<div class="mb-3">
+					  <label for="credits_signature" class="form-label fw-bold">Signature's Credits</label>
+					  <input type="number" class="form-control" th:field="*{credits}" id="credits_signature" placeholder="Enter amount of credits earned"
+					  	th:errorClass="is-invalid">
+					  <span th:if="${#fields.hasErrors('credits')}" class="invalid-feedback" th:errors="*{credits}"></span>
+					</div>
+					<div class="mb-3">
+					  <label for="teacher_signature" class="form-label fw-bold">Signature's Teacher</label>
+					  <input type="text" class="form-control" th:field="*{teacher}" id="teacher_signature" placeholder="Enter teacher's name"
+					  	th:errorClass="is-invalid">
+					  <span th:if="${#fields.hasErrors('teacher')}" class="invalid-feedback" th:errors="*{teacher}"></span>
+					</div>
+					
+					<button class="btn btn-primary col-12 fw-bold mb-4" type="submit">Register</button>
+				</form>
+			</div>
+		</div>
+	</main>
+		
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>
