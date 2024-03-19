@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Student Management System</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body>
+	
+	<nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+	  <div class="container-fluid">
+	    <a class="navbar-brand" th:href="@{/}">Student Management System</a>
+	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
+	    	aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+	    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+	        <li class="nav-item">
+	          <a class="nav-link active" aria-current="page" th:href="@{/students/all}">Students</a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link" href="teachersPage">Teachers</a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link active" href="">Signatures</a>
+	        </li>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+	
+	<div class="container mt-4 col-5 d-flex flex-column">
+		<form th:action="@{/students/register}" method="POST"  th:object="${student}" class="m-4">
+			<div class="mb-3">
+			  <label for="name_student" class="form-label">First Name</label>
+			  <input type="text" class="form-control" id="name_student" th:field="*{firstName}" placeholder="Enter your name" th:errorClass="is-invalid">
+			  <div th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="invalid-feedback"></div>
+			</div>
+			<div class="mb-3">
+			  <label for="lastname_student" class="form-label">Last Name</label>
+			  <input type="text" class="form-control" id="lastname_student" th:field="*{lastName}" placeholder="Enter your last name" th:errorClass="is-invalid">
+			  <div th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="invalid-feedback"></div>
+			</div>
+			<div class="mb-3">
+			  <label for="birthday_student" class="form-label">Birthday</label>
+			  <input type="date" class="form-control" id="birthday_student" th:field="*{birthday}" th:errorClass="is-invalid">
+			  <span th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}" class="invalid-feedback"></span>
+			</div>
+			<button type="submit" class="btn btn-primary col-12">Register</button>
+		</form>
+	</div>
+	
+	
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>
